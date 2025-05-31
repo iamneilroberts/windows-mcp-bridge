@@ -6,7 +6,7 @@ Complete setup for Claude Desktop with Cloudflare MCP servers on Windows.
 
 ```powershell
 # 1. Clone this repository
-git clone https://github.com/YOUR_USERNAME/windows-mcp-bridge.git
+git clone https://github.com/iamneilroberts/windows-mcp-bridge.git
 cd windows-mcp-bridge
 
 # 2. Run the setup script as Administrator
