@@ -1,0 +1,73 @@
+{
+  "mcpServers": {
+    "amadeus-api": {
+      "url": "https://amadeus-api-mcp.somotravel.workers.dev/sse", 
+      "headers": {
+        "Authorization": "Bearer amadeus-mcp-auth-key-2025"
+      }
+    },
+    "template-document": {
+      "url": "https://template-document-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer template-document-auth-2025"
+      }
+    },
+    "d1-database": {
+      "url": "https://clean-d1-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer clean-d1-auth-2025"
+      }
+    },
+    "google-places-api": {
+      "url": "https://google-places-api-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer google-places-mcp-auth-key-2025"
+      }
+    },
+    "r2-storage": {
+      "url": "https://r2-storage-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer r2-mcp-auth-key-2025"
+      }
+    },
+    "mobile-interaction": {
+      "url": "https://mobile-interaction-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer mobile-interaction-mcp-auth-key-2025"
+      }
+    },
+    "prompt-server": {
+      "url": "https://prompt-server-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer prompt-server-auth-2025"
+      }
+    },
+    "github-mcp": {
+      "url": "https://github-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer github-mcp-auth-key-2025"
+      }
+    },
+    "claudepoint": {
+      "command": "claudepoint",
+      "args": []
+    },
+    "travel-checkpoint": {
+      "url": "https://travel-checkpoint-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer travel-checkpoint-auth-2025"
+      }
+    },
+    "sequential-thinking": {
+      "url": "https://sequential-thinking-mcp.somotravel.workers.dev/sse",
+      "headers": {
+        "Authorization": "Bearer sequential-thinking-auth-2025"
+      }
+    }
+  },
+  "llm": {
+    "provider": "openai",
+    "model": "gpt-4",
+    "api_key": "${OPENAI_API_KEY}"
+  }
+}

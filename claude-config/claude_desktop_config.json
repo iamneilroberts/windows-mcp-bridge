@@ -1,0 +1,68 @@
+{
+  "mcpServers": {
+    "amadeus-api": {
+      "command": "python",
+      "args": [
+        "-m", "mcp_use",
+        "--config", "C:\\Claude\\mcp_config.json",
+        "--server", "amadeus-api"
+      ]
+    },
+    "template-document": {
+      "command": "python",
+      "args": [
+        "-m", "mcp_use",
+        "--config", "C:\\Claude\\mcp_config.json",
+        "--server", "template-document"
+      ]
+    },
+    "d1-database": {
+      "command": "python",
+      "args": [
+        "-m", "mcp_use",
+        "--config", "C:\\Claude\\mcp_config.json",
+        "--server", "d1-database"
+      ]
+    },
+    "google-places-api": {
+      "command": "python",
+      "args": [
+        "-m", "mcp_use",
+        "--config", "C:\\Claude\\mcp_config.json",
+        "--server", "google-places-api"
+      ]
+    },
+    "r2-storage": {
+      "command": "python",
+      "args": [
+        "-m", "mcp_use",
+        "--config", "C:\\Claude\\mcp_config.json",
+        "--server", "r2-storage"
+      ]
+    },
+    "mobile-interaction": {
+      "command": "python",
+      "args": [
+        "-m", "mcp_use",
+        "--config", "C:\\Claude\\mcp_config.json",
+        "--server", "mobile-interaction"
+      ]
+    },
+    "prompt-server": {
+      "command": "python",
+      "args": [
+        "-m", "mcp_use",
+        "--config", "C:\\Claude\\mcp_config.json",
+        "--server", "prompt-server"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "python",
+      "args": [
+        "-m", "mcp_use",
+        "--config", "C:\\Claude\\mcp_config.json",
+        "--server", "sequential-thinking"
+      ]
+    }
+  }
+}
