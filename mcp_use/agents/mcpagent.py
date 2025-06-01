@@ -28,6 +28,7 @@ from ..logging import logger
 from ..managers.server_manager import ServerManager
 from .prompts.system_prompt_builder import create_system_message
 from .prompts.templates import DEFAULT_SYSTEM_PROMPT_TEMPLATE, SERVER_MANAGER_SYSTEM_PROMPT_TEMPLATE
+from .slash_commands import slash_command_handler
 
 set_debug(logger.level == logging.DEBUG)
 
@@ -427,6 +428,34 @@ class MCPAgent:
             if self._agent_executor:
                 self._agent_executor.max_iterations = steps
 
+            # Track original command for formatting purposes
+            original_command = None
+            
+            # Check for slash commands first
+            if slash_command_handler.is_slash_command(query):
+                logger.info(f"🔧 Processing slash command: {query}")
+                original_command = query  # Store the original command
+                command_result = await slash_command_handler.execute_command(query, self)
+                
+                # If the command returns a tool invocation, process it
+                if command_result and command_result.startswith("use_tool_from_server"):
+                    # Extract the tool invocation details
+                    parts = command_result.split(maxsplit=3)
+                    if len(parts) >= 3:
+                        server_name = parts[1]
+                        tool_name = parts[2]
+                        tool_args = parts[3] if len(parts) > 3 else "{}"
+                        
+                        # Convert to natural language for the agent to process
+                        query = f"Please use the {tool_name} tool from {server_name} with arguments: {tool_args}"
+                        logger.info(f"🔄 Converted slash command to query: {query}")
+                else:
+                    # Command returned a direct response
+                    if self.memory_enabled:
+                        self.add_to_history(HumanMessage(content=query))
+                        self.add_to_history(AIMessage(content=command_result))
+                    return command_result
+            
             display_query = (
                 query[:50].replace("\n", " ") + "..."
                 if len(query) > 50
@@ -551,6 +580,10 @@ class MCPAgent:
                 logger.warning(f"⚠️ Agent stopped after reaching max iterations ({steps})")
                 result = f"Agent stopped after reaching the maximum number of steps ({steps})."
 
+            # Format result if it was from a slash command
+            if original_command and slash_command_handler.should_format_result(original_command):
+                result = slash_command_handler.format_command_result(original_command, result)
+            
             # Add the final response to conversation history if memory is enabled
             if self.memory_enabled:
                 self.add_to_history(AIMessage(content=result))
